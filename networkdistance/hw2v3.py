@@ -27,8 +27,8 @@ def getlowestdistancenode(distances,unvisited):
   #v=max(distances.values())
   lowesdistance =  0
   for key in unvisited:
-    #first one when not distance has been recorded
-    if ((distances[key]>0) and (lowesdistance==0)):
+    #first time when no distance has been recorded
+    if ((distances[key]>0) and (lowesdistance==0)): 
       lowesdistance = distances[key]
       closest_node = key  
   
@@ -55,7 +55,8 @@ def dijkstra(from_point,distances,graph):
       #only assing if its lower, otherwise, ignore
       if ((distance_aux+distance_accumulated )<distances[neighborn]):
         distances[neighborn] = distance_aux+distance_accumulated
-  return distances
+        
+  return distances 
 ########################################################################code runs
 #class definitions
 graphaux = Graph()
@@ -129,7 +130,7 @@ print(from_point)
 unvisited.remove(from_point)
 visited.add(from_point)
 
-distances = dijkstra(from_point,distances,graphaux)
+distances = dijkstra(from_point,distances,graphaux) #inside the function could be named other thing
 
 print("final print:")
 print (distances)
@@ -162,6 +163,8 @@ print("final print:")
 print (distances)
 print (unvisited)
 print (visited)
+
+#TO-DO: make into loop man
 
 """
 weighted graph:
