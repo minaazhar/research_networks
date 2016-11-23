@@ -69,7 +69,7 @@ def dijkstra(from_point,distances,graph,path):
 graphaux = Graph()
 
 #create N random points
-N=8
+N=100
 np.random.seed(4711) #this is to create repetitive random points for display propose
 randPoints = np.random.random((N,2))
 i=0
@@ -107,7 +107,7 @@ print(graphaux.distances)
 
 ################################################################define initial_node and final_nodel
 initial_node = '0'
-final_node = '3'
+final_node = '48'
 unvisited = set(graphaux.nodes)
 visited = set()
 distances = {}
