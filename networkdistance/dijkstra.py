@@ -6,6 +6,7 @@ Reference: #https://www.youtube.com/watch?v=gdmfOwyQlcI
 from collections import defaultdict, deque
 import numpy as np
 import random
+import matplotlib.pyplot as plt
 ####################################################################PART 1: class and functions
 class Graph(object):
     def __init__(self):
@@ -144,3 +145,40 @@ while (final_node in unvisited):
     print ("paths: ",path_to_origin)
 
 print("Final path from node"+initial_node +" to node "+ final_node+": "+path_to_origin[final_node]+final_node)
+
+#plot figures of network
+#first plot originPoints and then destinationPoints
+plt.figure(11)
+plt.plot( originPoints[:,0],originPoints[:,1], 's',color='g',markersize=15)
+plt.plot( destinationPoints[:,0],destinationPoints[:,1], 'o',color='b',markersize=15)
+
+#second: plot all connections edges
+for point_a in originPoints:
+    print ((point_a))
+    j=int(N/2)
+    for point_b in destinationPoints:
+
+        plt.plot( [point_a[0],point_b[0]],[point_a[1],point_b[1]], '-',color='k',markersize=15)
+        j=j+1
+    i=i+1
+
+#third: plot final path
+final_path = path_to_origin[final_node]+final_node
+final_path_nodes = final_path .split(",")
+ax = plt.axes()
+for i in range(len(final_path_nodes)-1):
+    x = [randPoints[int(final_path_nodes[i]),0],randPoints[int(final_path_nodes[i+1]),0]]
+    y = [randPoints[int(final_path_nodes[i]),1],randPoints[int(final_path_nodes[i+1]),1]]
+    plt.plot( x,y, '--',color='r',linewidth=3.0)
+    #ax.arrow(randPoints[int(final_path_nodes[i]),0], randPoints[int(final_path_nodes[i]),1], randPoints[int(final_path_nodes[i+1]),0], randPoints[int(final_path_nodes[i+1]),1], head_width=0.05, head_length=0.1, fc='k', ec='k')
+
+labels = ['node{0}'.format(i) for i in range(N)]
+for label, x, y in zip(labels, randPoints[:, 0], randPoints[:, 1]):
+    plt.annotate(
+        label,
+        xy = (x, y), xytext = (-20, 20),
+        textcoords = 'offset points', ha = 'right', va = 'bottom',
+        bbox = dict(boxstyle = 'round,pad=0.5', fc = 'yellow', alpha = 0.5),
+        arrowprops = dict(arrowstyle = '->', connectionstyle = 'arc3,rad=0'))
+
+plt.show()
