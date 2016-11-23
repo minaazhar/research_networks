@@ -69,7 +69,7 @@ def dijkstra(from_point,distances,graph,path):
 graphaux = Graph()
 
 #create N random points
-N=4
+N=8
 np.random.seed(4711) #this is to create repetitive random points for display propose
 randPoints = np.random.random((N,2))
 i=0
@@ -107,7 +107,7 @@ print(graphaux.distances)
 
 ################################################################define initial_node and final_nodel
 initial_node = '0'
-final_node = '1'
+final_node = '3'
 unvisited = set(graphaux.nodes)
 visited = set()
 distances = {}
@@ -165,13 +165,18 @@ for point_a in originPoints:
 #third: plot final path
 final_path = path_to_origin[final_node]+final_node
 final_path_nodes = final_path .split(",")
-ax = plt.axes()
+#ax = plt.axes()
 for i in range(len(final_path_nodes)-1):
     x = [randPoints[int(final_path_nodes[i]),0],randPoints[int(final_path_nodes[i+1]),0]]
     y = [randPoints[int(final_path_nodes[i]),1],randPoints[int(final_path_nodes[i+1]),1]]
     plt.plot( x,y, '--',color='r',linewidth=3.0)
-    #ax.arrow(randPoints[int(final_path_nodes[i]),0], randPoints[int(final_path_nodes[i]),1], randPoints[int(final_path_nodes[i+1]),0], randPoints[int(final_path_nodes[i+1]),1], head_width=0.05, head_length=0.1, fc='k', ec='k')
+    '''xi = randPoints[int(final_path_nodes[i]),0]
+    yi = randPoints[int(final_path_nodes[i]),1]
+    xf = randPoints[int(final_path_nodes[i+1]),0]
+    yf =  randPoints[int(final_path_nodes[i+1]),1]
+    ax.arrow(xi,yi,xf-xi ,yf-yi)#, head_width=0.02, head_length=0.05, fc='k', ec='k')'''
 
+#plot labels: source: http://stackoverflow.com/questions/40021676/pyplot-label-scatter-plot-with-coincident-points-overlapping-annotations
 labels = ['node{0}'.format(i) for i in range(N)]
 for label, x, y in zip(labels, randPoints[:, 0], randPoints[:, 1]):
     plt.annotate(
